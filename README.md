@@ -22,4 +22,4 @@ Good luck and have fun!
 
 **GitHub Pages**
 
-* [Link to the project on GitHub pages] (https://pquaresma-94.github.io/se_project_aroundtheus/)
+* [Link to the project on GitHub pages](https://pquaresma-94.github.io/se_project_aroundtheus/)
