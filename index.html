@@ -7,28 +7,75 @@
     <meta name="author" content="Pedro Quaresma">
     <meta name="description" content="Practicum Bootcamp Project 3">
     <meta name="keywords" content="Practicum, bootcamp, sprint 3">
-    <title>Around the US</title>
+    <title>Around the U.S.</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="./pages/index.css">
 </head>
-<body>
-    <div class="page">
-        <section class="header">
-            <img src="./images/logo.svg" alt="Around The US Logo" class="logo">
-        </section>
-        <section class="profile">
-            <div class="profile__image"></div>
-            <div class="profile__info"></div>
-            <div class="profile__add-button"></div>
-        </section>
-        <section class="cards">
-            <div class="card__content">
-                <div class="card__image"></div>
-                <div class="card__description"></div>
-                <div class="card__heart"></div>
-            </div>
-        </section>
-        <section class="footer"></section>
+<body class="page">
+    <div class="page__content">
+        <header class="header page__section page__section__screen-mobile">
+            <img src="./images/logo_white.svg" alt="Around The U.S. Logo" class="logo">
+        </header>
+        <main class="content">
+            <section class="profile page__section">
+                <img src="./images/jacques-cousteau.jpg" alt="Avatar" class="profile__image">
+                <div class="profile__info">
+                    <h1 class="profile__title">Jacques Cousteau</h1>
+                    <button class="profile__pencil-button" type="button"></button>
+                    <p class="profile__description">Explorer</p>
+                </div>
+                <button class="profile__add-button" type="button"></button>
+            </section>
+            <section class="cards page__section">
+                <ul class="cards__content">
+                    <li class="card">
+                        <img src="./images/yosemite-valley.jpg" alt="Yosemite Valley image" class="card__image">
+                        <div class="card__description">
+                            <h2 class="card__title">Yosemite Valley</h2>
+                            <button class="card__like-button" type="button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/lake-louise.png" alt="Lake Louise image" class="card__image">
+                        <div class="card__description">
+                            <h2 class="card__title">Lake Louise</h2>
+                            <button class="card__like-button" type="button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/bald-mountains.png" alt="Bald Mountains image" class="card__image">
+                        <div class="card__description">
+                            <h2 class="card__title">Bald Mountains</h2>
+                            <button class="card__like-button" type="button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/latemar.png" alt="Latemar image" class="card__image">
+                        <div class="card__description">
+                            <h2 class="card__title">Latemar</h2>
+                            <button class="card__like-button" type="button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/vanoise-national-park.png" alt="Vanoise National Park image" class="card__image">
+                        <div class="card__description">
+                            <h2 class="card__title">Vanoise National Park</h2>
+                            <button class="card__like-button" type="button"></button>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <img src="./images/lago-di-braies.png" alt="Lago di Braies image" class="card__image">
+                        <div class="card__description">
+                            <h2 class="card__title">Lago di Braies</h2>
+                            <button class="card__like-button" type="button"></button>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+        <footer class="footer page__section">
+            <p class="footer__copyright">&copy; 2023 Around the U.S.</p>
+        </footer>
     </div>
 </body>
 </html>

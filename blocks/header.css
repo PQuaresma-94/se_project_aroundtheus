@@ -1,0 +1,23 @@
+.header{
+    height: 74px;
+    border-bottom: 1px solid #545454;
+    padding-top: 45px;
+}
+
+.logo {
+    height: 33px;
+    width: 173px;
+}
+
+@media screen and (max-width: 430px){
+.header {
+    height: 56px;
+    width: calc(100% + 38px);
+    padding: 28px calc(100vw - 309px) 0 27px;
+
+}
+.logo {
+    height: 24px;
+    width: 126px;
+}
+}
