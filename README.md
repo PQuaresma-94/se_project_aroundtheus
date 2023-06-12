@@ -3,7 +3,7 @@
 ### Overview  
 
 * Intro
-* Description
+* Project Description
 * Project Features
 * Figma  
 * Images  
