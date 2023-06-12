@@ -1,37 +1,37 @@
 .page {
-    min-width: 320px;
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.2;
-    background-color: #000000;
-    color: #e5e5e5;
+  min-width: 320px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+  background-color: #000000;
+  color: #e5e5e5;
 }
 
 .page__content {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  min-height: 100vh;
 }
 
 .page__section {
-    max-width: 880px;
-    width: 100%;
-    position: relative;
-    margin: 0 auto;
+  max-width: 880px;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 920px) {
-    .page__section{
-        margin: 0 19px;
-        max-width: calc(100% - 38px);
-    }
-} 
+  .page__section {
+    margin: 0 19px;
+    max-width: calc(100% - 38px);
+  }
+}
 
 @media screen and (max-width: 430px) {
-    .page__section{
-        margin: 0;
-        padding: 0 calc((100% - 282px) / 2);
-        width: 100%;
-    }
+  .page__section {
+    margin: 0;
+    padding: 0 calc((100% - 282px) / 2);
+    width: 100%;
+  }
 }
