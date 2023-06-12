@@ -2,13 +2,26 @@
 
 ### Overview  
 
-* Intro  
+* Intro
+* Description
+* Project Features
 * Figma  
 * Images  
-  
+
 **Intro**
   
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
+This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones. 
+
+**Project Description**
+
+This is the third project of our software bootcamp, aiming to create a responsive website. Using a Figma mockup, we developed a site with distinct layouts for desktop and mobile. We applied previously learned tools like HTML and CSS, more specifically grid and media queries, to ensure a consistent user experience across devices. The desktop version maximized screen real estate while the mobile version prioritized usability. This project strengthened our skills in responsive web design, translating mockups into functional and visually appealing websites. 
+
+**Project Features**
+
+* Figma
+* Flexbox
+* Grid
+* Media Queries
   
 **Figma**  
   

@@ -1,23 +1,12 @@
 .header{
-    height: 74px;
-    border-bottom: 1px solid #545454;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
     padding-top: 45px;
-}
-
-.logo {
-    height: 33px;
-    width: 173px;
+    padding-bottom: 41px;
 }
 
 @media screen and (max-width: 430px){
 .header {
-    height: 56px;
     width: calc(100% + 38px);
-    padding: 28px calc(100vw - 309px) 0 27px;
-
-}
-.logo {
-    height: 24px;
-    width: 126px;
+    padding: 28px calc(100vw - 309px) 32px 27px;
 }
 }

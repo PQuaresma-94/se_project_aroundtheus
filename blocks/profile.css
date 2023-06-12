@@ -42,7 +42,7 @@
 }
 
 .profile__pencil-button:hover {
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
 
@@ -65,10 +65,11 @@
     width: 150px;
     border: 2px #fff solid;
     margin-left: auto;
+    border-radius: 2px;
 }
 
 .profile__add-button:hover {
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 800px) {
@@ -102,13 +103,7 @@
     margin: 0;
 }
 
-.profile__title {
-    font-size: 22px;
-    line-height: 27px;
-}
 .profile__description{
-    font-size: 14px;
-    line-height: 17px;
     width: 282px;
     text-align: center;
 }
