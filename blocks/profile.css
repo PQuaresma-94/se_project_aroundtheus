@@ -26,6 +26,7 @@
     font-family: 'Inter', Arial, sans-serif;
     font-weight: 500;
     grid-area: title;
+    max-width: 373px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -101,6 +102,15 @@
     flex-wrap: wrap;
     justify-content: center;
     margin: 0;
+}
+
+.profile__title {
+    max-width: 246px;
+}
+
+.profile__pencil-button {
+    height: 18px;
+    width: 18px;
 }
 
 .profile__description{
