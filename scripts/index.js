@@ -16,7 +16,7 @@ const initialCards = [
       link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
     },
     {
-      titlename: "Vanoise National Park",
+      title: "Vanoise National Park",
       link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
     },
     {
