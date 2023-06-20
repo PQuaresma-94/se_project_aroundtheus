@@ -22,6 +22,7 @@ This is the third project of our software bootcamp, aiming to create a responsiv
 - Flexbox
 - Grid
 - Media Queries
+- JavaScript
 
 **Figma**
 
