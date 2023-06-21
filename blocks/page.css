@@ -33,6 +33,5 @@
     margin: 0;
     padding: 0 calc((100% - 282px) / 2);
     width: auto;
-    max-width: auto;
   }
 }
