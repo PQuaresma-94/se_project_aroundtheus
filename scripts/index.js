@@ -41,7 +41,7 @@ const profileAddBtn = document.querySelector("#profile-add-btn");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardCloseModal = document.querySelector("#add-card-close-btn");
 const addCardTitleInput = document.querySelector("#card-title-input");
-const addCardDescriptionInput = document.querySelector("#card-image-link-input");
+const addCardImageLinkInput = document.querySelector("#card-image-link-input");
 const addCardModalForm = addCardModal.querySelector(".modal__form");
 
 /* Functions */
@@ -73,6 +73,19 @@ function handleProfileEditSubmit(e) {
   closeModal();
 }
 
+function handleAddNewCardSubmit(e) {
+  e.preventDefault();
+  const newCard = {
+    name: addCardTitleInput.value,
+    link: addCardImageLinkInput.value,
+  };
+  const cardElement = getCardElement(newCard);
+  cardContentElement.prepend(cardElement);
+  closeAddCardModal();
+  addCardTitleInput.value = "";
+  addCardImageLinkInput.value = "";
+}
+
 /* Event Listeners */
 
 profilePencilBtn.addEventListener('click', () => {
@@ -95,3 +108,5 @@ profileAddBtn.addEventListener('click', () => {
 });
 
 addCardCloseModal.addEventListener('click', closeAddCardModal);
+
+addCardModal.addEventListener('submit', handleAddNewCardSubmit);
