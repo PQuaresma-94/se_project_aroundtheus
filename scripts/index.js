@@ -56,12 +56,16 @@ function getCardElement(cardData) {
   const cardTitleElement = cardElement.querySelector(".card__title");
   const cardImageElement = cardElement.querySelector(".card__image");
   const cardLikeBtnElement = cardElement.querySelector(".card__like-button");
+  const cardDeleteBtnElement = cardElement.querySelector(".card__delete-button");
+
+  cardLikeBtnElement.addEventListener('click', handleLikeButtonClick);
+  cardDeleteBtnElement.addEventListener('click', () => {
+    cardElement.remove();
+  });
 
   cardImageElement.src = cardData.link;
   cardImageElement.alt = cardData.name;
   cardTitleElement.textContent = cardData.name;
-
-  cardLikeBtnElement.addEventListener('click', handleLikeButtonClick);
 
   return cardElement;
 }

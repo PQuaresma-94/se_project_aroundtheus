@@ -49,3 +49,18 @@
 .card__like-button:hover {
   opacity: 0.5;
 }
+
+.card__delete-button {
+  margin-top: 18px;
+  margin-left: calc(282px - calc(15px + 18px));
+  height: 19.3px;
+  width: 18px;
+  background: transparent url(../images/bin.svg) center no-repeat;
+  border: none;
+  padding: 0;
+  position: absolute;
+}
+
+.card__delete-button:hover {
+  opacity: 0.6;
+}
