@@ -43,6 +43,7 @@ const addCardCloseModal = document.querySelector("#add-card-close-btn");
 const addCardTitleInput = document.querySelector("#card-title-input");
 const addCardImageLinkInput = document.querySelector("#card-image-link-input");
 const addCardModalForm = addCardModal.querySelector(".modal__form");
+const cardItem = document.querySelector(".card") 
 
 /* Functions */
 
@@ -54,15 +55,20 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitleElement = cardElement.querySelector(".card__title");
   const cardImageElement = cardElement.querySelector(".card__image");
+  const cardLikeBtnElement = cardElement.querySelector(".card__like-button");
+
   cardImageElement.src = cardData.link;
   cardImageElement.alt = cardData.name;
   cardTitleElement.textContent = cardData.name;
+
+  cardLikeBtnElement.addEventListener('click', handleLikeButtonClick);
+
   return cardElement;
 }
 
 function closeAddCardModal() {
   addCardModal.classList.remove("modal_opened");
-} 
+}
 
 /* Event Handlers */
 
@@ -84,6 +90,11 @@ function handleAddNewCardSubmit(e) {
   closeAddCardModal();
   addCardTitleInput.value = "";
   addCardImageLinkInput.value = "";
+}
+
+function handleLikeButtonClick(e) {
+  const cardLikeBtn = e.target;
+  cardLikeBtn.classList.toggle("card__like-button_active");
 }
 
 /* Event Listeners */
