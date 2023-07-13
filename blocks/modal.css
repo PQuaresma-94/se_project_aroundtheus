@@ -23,8 +23,6 @@
 }
 
 .modal__container_type_preview {
-  max-width: 75vw;
-  max-height: 75vh;
   width: auto;
   height: auto;
   background: transparent;
@@ -75,8 +73,8 @@
 }
 
 .modal__preview-image {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 75vw;
+  max-height: 75vh;
   object-fit: cover;
   display: flex;
 }
@@ -120,11 +118,10 @@
     width: 26px;
     height: 26px;
   }
-}
-
-.modal__close-button_type_preview {
-  bottom: calc(100% + 5px);
-  left: calc(100% + 5px);
-  width: 30px;
-  height: 30px;
+  .modal__close-button_type_preview {
+    bottom: calc(100% + 5px);
+    left: calc(100% + 5px);
+    width: 30px;
+    height: 30px;
+  }
 }
