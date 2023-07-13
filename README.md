@@ -1,4 +1,4 @@
-# Project 3: Around The U.S.
+# Project 3, 4 and 5: Around The U.S.
 
 ### Overview
 
@@ -7,6 +7,7 @@
 - Project Features
 - Figma
 - Images
+- GitHub Pages
 
 **Intro**
 
@@ -22,7 +23,9 @@ This is the third project of our software bootcamp, aiming to create a responsiv
 - Flexbox
 - Grid
 - Media Queries
-- JavaScript
+- JavaScript Query Selectores
+- JavaScript Functions
+- JavaScript Event Handlers
 
 **Figma**
 
