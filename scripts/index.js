@@ -52,9 +52,9 @@ const previewCloseBtn = document.querySelector("#preview-image-close-btn");
 
 /* Functions */
 
-function closeModal() {
-  profilePencilModal.classList.remove("modal_opened");
-} 
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+}
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -81,21 +81,13 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
-function closeAddCardModal() {
-  addCardModal.classList.remove("modal_opened");
-}
-
-function closePreviewImageModal() {
-  previewImageModal.classList.remove("modal_opened");
-}
-
 /* Event Handlers */
 
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  closeModal();
+  closeModal(profilePencilModal);
 }
 
 function handleAddNewCardSubmit(e) {
@@ -106,7 +98,7 @@ function handleAddNewCardSubmit(e) {
   };
   const cardElement = getCardElement(newCard);
   cardContentElement.prepend(cardElement);
-  closeAddCardModal();
+  closeModal(addCardModal);
   addCardTitleInput.value = "";
   addCardImageLinkInput.value = "";
 }
@@ -124,7 +116,7 @@ profilePencilBtn.addEventListener('click', () => {
   profilePencilModal.classList.add("modal_opened");
 });
 
-profileCloseModal.addEventListener('click', closeModal);
+profileCloseModal.addEventListener('click', () => closeModal(profilePencilModal));
 
 profileModalForm.addEventListener('submit', handleProfileEditSubmit);
 
@@ -137,8 +129,8 @@ profileAddBtn.addEventListener('click', () => {
   addCardModal.classList.add("modal_opened");
 });
 
-addCardCloseModal.addEventListener('click', closeAddCardModal);
+addCardCloseModal.addEventListener('click', () => closeModal(addCardModal));
 
 addCardModal.addEventListener('submit', handleAddNewCardSubmit);
 
-previewCloseBtn.addEventListener('click', closePreviewImageModal);
+previewCloseBtn.addEventListener('click', () => closeModal(previewImageModal));
