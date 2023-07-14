@@ -56,7 +56,7 @@
           class="modal__close-button"
           id="profile-modal-close-btn"
         ></button>
-        <p class="modal__heading">Edit profile</p>
+        <h2 class="modal__heading">Edit profile</h2>
         <form class="form modal__form">
           <fieldset class="form__fieldset">
             <input
@@ -81,7 +81,7 @@
     <div class="modal" id="add-card-modal">
       <div class="modal__container">
         <button class="modal__close-button" id="add-card-close-btn"></button>
-        <p class="modal__heading">New place</p>
+        <h2 class="modal__heading">New place</h2>
         <form class="form modal__form">
           <fieldset class="form__fieldset">
             <input
@@ -90,13 +90,15 @@
               name="title"
               id="card-title-input"
               placeholder="Title"
+              required
             />
             <input
-              type="text"
+              type="url"
               class="form__input"
               name="link"
               id="card-image-link-input"
               placeholder="Image link"
+              required
             />
           </fieldset>
           <button class="modal__save-button" type="submit">Create</button>
@@ -123,7 +125,6 @@
         <button class="card__delete-button" type="button"></button>
       </li>
     </template>
-
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/index.js" defer></script>
   </body>
 </html>

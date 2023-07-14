@@ -9,6 +9,7 @@
 .card__image {
   width: 282px;
   height: 282px;
+  cursor: pointer;
 }
 
 .card__description {
@@ -40,6 +41,7 @@
   background: transparent url(../images/heart.svg) center no-repeat;
   border: none;
   padding: 0;
+  cursor: pointer;
 }
 
 .card__like-button_active {
@@ -58,6 +60,7 @@
   background: transparent url(../images/bin.svg) center no-repeat;
   border: none;
   padding: 0;
+  cursor: pointer;
   position: absolute;
 }
 

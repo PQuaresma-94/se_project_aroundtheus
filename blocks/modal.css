@@ -25,6 +25,7 @@
   border-radius: 10px;
   margin: auto;
   background-color: #fff;
+  width: calc(430px - 36px - 36px);
 }
 
 .modal__container_type_preview {
@@ -53,6 +54,7 @@
   width: 40px;
   height: 40px;
   padding: 0;
+  cursor: pointer;
 }
 
 .modal__close-button:hover {
@@ -63,7 +65,7 @@
   background-color: #000;
   color: #fff;
   height: 50px;
-  width: 358px;
+  width: 100%;
   border-radius: 2px;
   border: none;
   padding: 0;
@@ -71,6 +73,7 @@
   line-height: 22px;
   font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
+  cursor: pointer;
 }
 
 .modal__save-button:hover {
@@ -97,10 +100,12 @@
 @media screen and (max-width: 630px) {
   .modal__container {
     padding: 25px 22px;
+    width: calc(282px - 22px - 22px);
   }
 
   .modal__container_type_preview {
     padding: 0;
+    width: auto;
   }
 
   .modal__heading {
@@ -111,7 +116,6 @@
 
   .modal__save-button {
     height: 46px;
-    width: 238px;
     font-size: 14px;
     line-height: 17px;
   }
