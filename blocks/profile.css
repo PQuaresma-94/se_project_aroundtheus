@@ -40,6 +40,7 @@
   border: 1px #fff solid;
   grid-area: button;
   padding: 0;
+  cursor: pointer;
 }
 
 .profile__pencil-button:hover {
@@ -66,6 +67,7 @@
   border: 2px #fff solid;
   margin-left: auto;
   border-radius: 2px;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {
