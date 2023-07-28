@@ -87,12 +87,16 @@ function getCardElement(cardData) {
 
 /* Event Handlers */
 
+//Profile Pencil Modal Event Handler
+
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closeModal(profilePencilModal);
 }
+
+//Add Card Modal Event Handler
 
 function handleAddNewCardSubmit(e) {
   e.preventDefault();
@@ -106,12 +110,16 @@ function handleAddNewCardSubmit(e) {
   addCardModalForm.reset();
 }
 
+//Card Like Event Handler
+
 function handleLikeButtonClick(e) {
   const cardLikeBtn = e.target;
   cardLikeBtn.classList.toggle("card__like-button_active");
 }
 
 /* Event Listeners */
+
+//Profile Pencil Modal Event Listeners
 
 profilePencilBtn.addEventListener('click', () => {
   profileTitleInput.value = profileTitle.textContent;
@@ -122,6 +130,20 @@ profilePencilBtn.addEventListener('click', () => {
 profileCloseModal.addEventListener('click', () => closeModal(profilePencilModal));
 
 profileModalForm.addEventListener('submit', handleProfileEditSubmit);
+
+profilePencilModal.addEventListener("click", (e) => {
+  if (e.target === profilePencilModal) {
+    closeModal(profilePencilModal);
+  };
+})
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeModal(profilePencilModal);
+  };
+})
+
+//Add Card Modal Event Listeners
 
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
@@ -134,6 +156,32 @@ profileAddBtn.addEventListener('click', () => {
 
 addCardCloseModal.addEventListener('click', () => closeModal(addCardModal));
 
+addCardModal.addEventListener("click", (e) => {
+  if (e.target === addCardModal) {
+    closeModal(addCardModal);
+  };
+})
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeModal(addCardModal);
+  };
+})
+
 addCardModal.addEventListener('submit', handleAddNewCardSubmit);
 
+//Preview Image Event Listeners
+
 previewCloseBtn.addEventListener('click', () => closeModal(previewImageModal));
+
+previewImageModal.addEventListener("click", (e) => {
+  if (e.target === previewImageModal) {
+    closeModal(previewImageModal);
+  };
+})
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeModal(previewImageModal);
+  };
+})
