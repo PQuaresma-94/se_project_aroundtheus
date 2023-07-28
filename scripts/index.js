@@ -42,6 +42,7 @@ const addCardModal = document.querySelector("#add-card-modal");
 const addCardCloseModal = document.querySelector("#add-card-close-btn");
 const addCardTitleInput = document.querySelector("#card-title-input");
 const addCardImageLinkInput = document.querySelector("#card-image-link-input");
+const addCardSaveBtn = document.querySelector("#add-card-save-btn");
 const addCardModalForm = addCardModal.querySelector(".modal__form");
 const cardItem = document.querySelector(".card");
 const previewImageModal = document.querySelector("#preview-image-modal");
@@ -58,6 +59,11 @@ function openModal(modal) {
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+}
+
+function disableSaveButton(modal) {
+  modal.classList.add("modal__save-button_disabled");
+  modal.disabled = true;
 }
 
 function getCardElement(cardData) {
@@ -108,6 +114,7 @@ function handleAddNewCardSubmit(e) {
   cardContentElement.prepend(cardElement);
   closeModal(addCardModal);
   addCardModalForm.reset();
+  disableSaveButton(addCardSaveBtn);
 }
 
 //Card Like Event Handler
