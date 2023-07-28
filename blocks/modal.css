@@ -80,6 +80,12 @@
   opacity: 0.8;
 }
 
+.modal__save-button_disabled {
+  background: #fff;
+  color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 .modal__preview-image {
   max-width: 75vw;
   max-height: 75vh;
