@@ -55,15 +55,24 @@ const previewCloseBtn = document.querySelector("#preview-image-close-btn");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener('keydown', closeByEscape);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener('keydown', closeByEscape);
 }
 
-function disableSaveButton(modal) {
-  modal.classList.add("modal__save-button_disabled");
-  modal.disabled = true;
+function closeByEscape(e) {
+  if (e.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    closeModal(openedModal);
+  };
+} 
+
+function disableSaveButton(button) {
+  button.classList.add("modal__save-button_disabled");
+  button.disabled = true;
 }
 
 function getCardElement(cardData) {
@@ -144,12 +153,6 @@ profilePencilModal.addEventListener("click", (e) => {
   };
 })
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    closeModal(profilePencilModal);
-  };
-})
-
 //Add Card Modal Event Listeners
 
 initialCards.forEach((cardData) => {
@@ -169,12 +172,6 @@ addCardModal.addEventListener("click", (e) => {
   };
 })
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    closeModal(addCardModal);
-  };
-})
-
 addCardModal.addEventListener('submit', handleAddNewCardSubmit);
 
 //Preview Image Event Listeners
@@ -183,12 +180,6 @@ previewCloseBtn.addEventListener('click', () => closeModal(previewImageModal));
 
 previewImageModal.addEventListener("click", (e) => {
   if (e.target === previewImageModal) {
-    closeModal(previewImageModal);
-  };
-})
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
     closeModal(previewImageModal);
   };
 })
