@@ -1,3 +1,6 @@
+//import Card from "../components/Card.js"
+import FormValidator from "../components/FormValidator.js"
+
 const initialCards = [
     {
       name: "Yosemite Valley",
@@ -183,3 +186,20 @@ previewImageModal.addEventListener("click", (e) => {
     closeModal(previewImageModal);
   };
 })
+
+
+//Validation Activation
+const defautlFormConfig = {
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".modal__save-button",
+  inactiveButtonClass: "modal__save-button_disabled",
+  inputErrorClass: "form__input-error",
+  errorClass: "form__error_visible"
+}
+
+const editFormValidator = new FormValidator(defautlFormConfig, profilePencilModal);
+const addCardFormValidator = new FormValidator(defautlFormConfig, addCardModal);
+
+editFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
