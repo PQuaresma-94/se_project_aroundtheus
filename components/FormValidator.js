@@ -39,7 +39,7 @@ _hasInvalidInput(inputList) {
     return !inputList.every((inputEl) => inputEl.validity.valid)
 }
 
-_disableBtn(saveButton) {
+disableBtn(saveButton) {
     saveButton.classList.add(this._inactiveButtonClass);
     saveButton.disabled = true;
 }
@@ -51,7 +51,7 @@ _enableBtn(saveButton) {
 
 _toggleButtonState(inputEls, saveButton) {
     if (this._hasInvalidInput(inputEls)) {
-        this._disableBtn(saveButton)
+        this.disableBtn(saveButton)
         return;
     } 
     this._enableBtn(saveButton);
