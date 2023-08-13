@@ -36,7 +36,7 @@ _checkInputValidity(inputEl) {
 }
 
 _hasInvalidInput(inputList) {
-    return ![inputList].every((inputEl) => inputEl.validity.valid)
+    return !inputList.every((inputEl) => inputEl.validity.valid)
 }
 
 _disableBtn(saveButton) {
@@ -58,7 +58,7 @@ _toggleButtonState(inputEls, saveButton) {
 }
 
 _setEventListeners() {
-    const inputEls = this._formEl.querySelectorAll(this._inputSelector);
+    const inputEls = [...this._formEl.querySelectorAll(this._inputSelector)];
     const saveButton = this._formEl.querySelector(this._submitButtonSelector)
 
     inputEls.forEach((inputEl) => {
