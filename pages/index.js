@@ -1,4 +1,4 @@
-//import Card from "../components/Card.js"
+// import Card from "../components/Card.js"
 import FormValidator from "../components/FormValidator.js"
 
 const initialCards = [
@@ -105,7 +105,7 @@ function getCardElement(cardData) {
 
 /* Event Handlers */
 
-//Profile Pencil Modal Event Handler
+// Profile Pencil Modal Event Handler
 
 function handleProfileEditSubmit(e) {
   e.preventDefault();
@@ -114,7 +114,7 @@ function handleProfileEditSubmit(e) {
   closeModal(profilePencilModal);
 }
 
-//Add Card Modal Event Handler
+// Add Card Modal Event Handler
 
 function handleAddNewCardSubmit(e) {
   e.preventDefault();
@@ -129,7 +129,7 @@ function handleAddNewCardSubmit(e) {
   disableSaveButton(addCardSaveBtn);
 }
 
-//Card Like Event Handler
+// Card Like Event Handler
 
 function handleLikeButtonClick(e) {
   const cardLikeBtn = e.target;
@@ -138,7 +138,7 @@ function handleLikeButtonClick(e) {
 
 /* Event Listeners */
 
-//Profile Pencil Modal Event Listeners
+// Profile Pencil Modal Event Listeners
 
 profilePencilBtn.addEventListener('click', () => {
   profileTitleInput.value = profileTitle.textContent;
@@ -156,7 +156,7 @@ profilePencilModal.addEventListener("click", (e) => {
   };
 })
 
-//Add Card Modal Event Listeners
+// Add Card Modal Event Listeners
 
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
@@ -177,7 +177,7 @@ addCardModal.addEventListener("click", (e) => {
 
 addCardModal.addEventListener('submit', handleAddNewCardSubmit);
 
-//Preview Image Event Listeners
+// Preview Image Event Listeners
 
 previewCloseBtn.addEventListener('click', () => closeModal(previewImageModal));
 
@@ -188,7 +188,7 @@ previewImageModal.addEventListener("click", (e) => {
 })
 
 
-//Validation Activation
+// Validation Activation
 const defautlFormConfig = {
   formSelector: ".form",
   inputSelector: ".form__input",
