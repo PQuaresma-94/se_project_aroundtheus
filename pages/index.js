@@ -206,16 +206,19 @@ addCardFormValidator.enableValidation();
 
 // Add Card 
 
-const cardTest = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
+// const cardTest = {
+//   name: "Yosemite Valley",
+//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+// };
 
-const cardData = new Card(cardTest, "#card-template");
+// const cardData = new Card(cardTest, "#card-template");
 
 function renderCard () {
-  const cardElement = cardData.getView();
+  initialCards.forEach((cardData) => {
+  const cardsData = new Card(cardData, "#card-template");
+  const cardElement = cardsData.getView();
   cardContentElement.append(cardElement)
+  })
 }
 
 renderCard();
