@@ -73,10 +73,10 @@ function closeByEscape(e) {
   };
 } 
 
-function disableSaveButton(button) {
-  button.classList.add("modal__save-button_disabled");
-  button.disabled = true;
-}
+// function disableSaveButton(button) {
+//   button.classList.add("modal__save-button_disabled");
+//   button.disabled = true;
+// }
 
 /* function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -122,11 +122,12 @@ function handleAddNewCardSubmit(e) {
     name: addCardTitleInput.value,
     link: addCardImageLinkInput.value,
   };
-  const cardElement = getCardElement(newCard);
+  const cardElementData = new Card(newCard, "#card-template");
+  const cardElement = cardElementData.getView();
   cardContentElement.prepend(cardElement);
   closeModal(addCardModal);
   addCardModalForm.reset();
-  disableSaveButton(addCardSaveBtn);
+  addCardFormValidator.disableBtn(addCardSaveBtn);
 }
 
 // Card Like Event Handler
@@ -213,10 +214,12 @@ addCardFormValidator.enableValidation();
 
 // const cardData = new Card(cardTest, "#card-template");
 
+// Render Initial Cards
+
 function renderCard () {
   initialCards.forEach((cardData) => {
-  const cardsData = new Card(cardData, "#card-template");
-  const cardElement = cardsData.getView();
+  const initialCardData = new Card(cardData, "#card-template");
+  const cardElement = initialCardData.getView();
   cardContentElement.append(cardElement)
   })
 }
