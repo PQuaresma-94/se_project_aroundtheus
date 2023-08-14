@@ -30,6 +30,8 @@ const initialCards = [
 
 /* Elements */
 
+// Profile Elements
+
 const profilePencilBtn = document.querySelector("#profile-pencil-btn");
 const profilePencilModal = document.querySelector("#profile-pencil-modal");
 const profileCloseModal = document.querySelector("#profile-modal-close-btn");
@@ -38,8 +40,10 @@ const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector("#profile-description-input");
 const profileModalForm = profilePencilModal.querySelector(".modal__form");
+
+// Add Card Elements
+
 const cardContentElement = document.querySelector(".cards__content");
-const cardTemplate = document.querySelector("#card-template").content.firstElementChild;
 const profileAddBtn = document.querySelector("#profile-add-btn");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardCloseModal = document.querySelector("#add-card-close-btn");
@@ -47,19 +51,23 @@ const addCardTitleInput = document.querySelector("#card-title-input");
 const addCardImageLinkInput = document.querySelector("#card-image-link-input");
 const addCardSaveBtn = document.querySelector("#add-card-save-btn");
 const addCardModalForm = addCardModal.querySelector(".modal__form");
-const cardItem = document.querySelector(".card");
+
+// Preview Image Elements
+
 const previewImageModal = document.querySelector("#preview-image-modal");
-const previewCardImage = previewImageModal.querySelector(".modal__preview-image");
-const previewCardImageTitle = previewImageModal.querySelector(".modal__preview-image-title");
 const previewCloseBtn = document.querySelector("#preview-image-close-btn");
 
 
 /* Functions */
 
+// Open Modal Functions
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener('keydown', closeByEscape);
 }
+
+// Close Modal Functions
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
@@ -72,36 +80,6 @@ function closeByEscape(e) {
     closeModal(openedModal);
   };
 } 
-
-// function disableSaveButton(button) {
-//   button.classList.add("modal__save-button_disabled");
-//   button.disabled = true;
-// }
-
-/* function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardTitleElement = cardElement.querySelector(".card__title");
-  const cardImageElement = cardElement.querySelector(".card__image");
-  const cardLikeBtnElement = cardElement.querySelector(".card__like-button");
-  const cardDeleteBtnElement = cardElement.querySelector(".card__delete-button");
-
-  cardLikeBtnElement.addEventListener('click', handleLikeButtonClick);
-  cardDeleteBtnElement.addEventListener('click', () => {
-    cardElement.remove();
-  });
-  cardImageElement.addEventListener('click', () => {
-    openModal(previewImageModal);
-    previewCardImage.src = cardData.link;
-    previewCardImage.alt = cardData.name;
-    previewCardImageTitle.textContent = cardData.name;
-  });
-
-  cardImageElement.src = cardData.link;
-  cardImageElement.alt = cardData.name;
-  cardTitleElement.textContent = cardData.name;
-
-  return cardElement;
-} */
 
 /* Event Handlers */
 
@@ -130,13 +108,6 @@ function handleAddNewCardSubmit(e) {
   addCardFormValidator.disableBtn(addCardSaveBtn);
 }
 
-// Card Like Event Handler
-
-/* function handleLikeButtonClick(e) {
-  const cardLikeBtn = e.target;
-  cardLikeBtn.classList.toggle("card__like-button_active");
-} */
-
 /* Event Listeners */
 
 // Profile Pencil Modal Event Listeners
@@ -158,11 +129,6 @@ profilePencilModal.addEventListener("click", (e) => {
 })
 
 // Add Card Modal Event Listeners
-
-// initialCards.forEach((cardData) => {
-//   const cardElement = getCardElement(cardData);
-//   cardContentElement.append(cardElement);
-// });
 
 profileAddBtn.addEventListener('click', () => {
   openModal(addCardModal);
@@ -190,6 +156,7 @@ previewImageModal.addEventListener("click", (e) => {
 
 
 // Validation Activation
+
 const defautlFormConfig = {
   formSelector: ".form",
   inputSelector: ".form__input",
@@ -204,15 +171,6 @@ const addCardFormValidator = new FormValidator(defautlFormConfig, addCardModal);
 
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
-
-// Add Card 
-
-// const cardTest = {
-//   name: "Yosemite Valley",
-//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-// };
-
-// const cardData = new Card(cardTest, "#card-template");
 
 // Render Initial Cards
 

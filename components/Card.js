@@ -1,7 +1,6 @@
 const previewImageModal = document.querySelector("#preview-image-modal");
 const previewCardImage = previewImageModal.querySelector(".modal__preview-image");
 const previewCardImageTitle = previewImageModal.querySelector(".modal__preview-image-title");
-const previewCloseBtn = document.querySelector("#preview-image-close-btn");
 
 function openModal(modal) {
     modal.classList.add("modal_opened");
