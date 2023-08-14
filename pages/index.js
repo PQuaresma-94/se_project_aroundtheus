@@ -48,66 +48,11 @@ const cardContentElement = document.querySelector(".cards__content");
 const profileAddBtn = document.querySelector("#profile-add-btn");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardCloseModal = document.querySelector("#add-card-close-btn");
-const addCardTitleInput = document.querySelector("#card-title-input");
-const addCardImageLinkInput = document.querySelector("#card-image-link-input");
-const addCardSaveBtn = document.querySelector("#add-card-save-btn");
-const addCardModalForm = addCardModal.querySelector(".modal__form");
 
 // Preview Image Elements
 
 const previewImageModal = document.querySelector("#preview-image-modal");
 const previewCloseBtn = document.querySelector("#preview-image-close-btn");
-
-
-// /* Functions */
-
-// // Open Modal Functions
-
-// function openModal(modal) {
-//   modal.classList.add("modal_opened");
-//   document.addEventListener('keydown', closeByEscape);
-// }
-
-// // Close Modal Functions
-
-// function closeModal(modal) {
-//   modal.classList.remove("modal_opened");
-//   document.removeEventListener('keydown', closeByEscape);
-// }
-
-// function closeByEscape(e) {
-//   if (e.key === "Escape") {
-//     const openedModal = document.querySelector(".modal_opened");
-//     closeModal(openedModal);
-//   };
-// } 
-
-// /* Event Handlers */
-
-// // Profile Pencil Modal Event Handler
-
-// function handleProfileEditSubmit(e) {
-//   e.preventDefault();
-//   profileTitle.textContent = profileTitleInput.value;
-//   profileDescription.textContent = profileDescriptionInput.value;
-//   closeModal(profilePencilModal);
-// }
-
-// // Add Card Modal Event Handler
-
-// function handleAddNewCardSubmit(e) {
-//   e.preventDefault();
-//   const newCard = {
-//     name: addCardTitleInput.value,
-//     link: addCardImageLinkInput.value,
-//   };
-//   const cardElementData = new Card(newCard, "#card-template");
-//   const cardElement = cardElementData.getView();
-//   cardContentElement.prepend(cardElement);
-//   closeModal(addCardModal);
-//   addCardModalForm.reset();
-//   addCardFormValidator.disableBtn(addCardSaveBtn);
-// }
 
 /* Event Listeners */
 
