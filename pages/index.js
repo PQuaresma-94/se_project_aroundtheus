@@ -1,4 +1,4 @@
-// import Card from "../components/Card.js"
+import Card from "../components/Card.js"
 import FormValidator from "../components/FormValidator.js"
 
 const initialCards = [
@@ -78,7 +78,7 @@ function disableSaveButton(button) {
   button.disabled = true;
 }
 
-function getCardElement(cardData) {
+/* function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitleElement = cardElement.querySelector(".card__title");
   const cardImageElement = cardElement.querySelector(".card__image");
@@ -101,7 +101,7 @@ function getCardElement(cardData) {
   cardTitleElement.textContent = cardData.name;
 
   return cardElement;
-}
+} */
 
 /* Event Handlers */
 
@@ -131,10 +131,10 @@ function handleAddNewCardSubmit(e) {
 
 // Card Like Event Handler
 
-function handleLikeButtonClick(e) {
+/* function handleLikeButtonClick(e) {
   const cardLikeBtn = e.target;
   cardLikeBtn.classList.toggle("card__like-button_active");
-}
+} */
 
 /* Event Listeners */
 
@@ -158,10 +158,10 @@ profilePencilModal.addEventListener("click", (e) => {
 
 // Add Card Modal Event Listeners
 
-initialCards.forEach((cardData) => {
-  const cardElement = getCardElement(cardData);
-  cardContentElement.append(cardElement);
-});
+// initialCards.forEach((cardData) => {
+//   const cardElement = getCardElement(cardData);
+//   cardContentElement.append(cardElement);
+// });
 
 profileAddBtn.addEventListener('click', () => {
   openModal(addCardModal);
@@ -203,3 +203,19 @@ const addCardFormValidator = new FormValidator(defautlFormConfig, addCardModal);
 
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
+
+// Add Card 
+
+const cardTest = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
+
+const cardData = new Card(cardTest, "#card-template");
+
+function renderCard () {
+  const cardElement = cardData.getView();
+  cardContentElement.append(cardElement)
+}
+
+renderCard();
