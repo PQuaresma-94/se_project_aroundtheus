@@ -1,5 +1,6 @@
 import Card from "../components/Card.js"
 import FormValidator from "../components/FormValidator.js"
+import {openModal, closeModal, handleProfileEditSubmit, handleAddNewCardSubmit} from "../utils/utils.js"
 
 const initialCards = [
     {
@@ -58,55 +59,55 @@ const previewImageModal = document.querySelector("#preview-image-modal");
 const previewCloseBtn = document.querySelector("#preview-image-close-btn");
 
 
-/* Functions */
+// /* Functions */
 
-// Open Modal Functions
+// // Open Modal Functions
 
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener('keydown', closeByEscape);
-}
+// function openModal(modal) {
+//   modal.classList.add("modal_opened");
+//   document.addEventListener('keydown', closeByEscape);
+// }
 
-// Close Modal Functions
+// // Close Modal Functions
 
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener('keydown', closeByEscape);
-}
+// function closeModal(modal) {
+//   modal.classList.remove("modal_opened");
+//   document.removeEventListener('keydown', closeByEscape);
+// }
 
-function closeByEscape(e) {
-  if (e.key === "Escape") {
-    const openedModal = document.querySelector(".modal_opened");
-    closeModal(openedModal);
-  };
-} 
+// function closeByEscape(e) {
+//   if (e.key === "Escape") {
+//     const openedModal = document.querySelector(".modal_opened");
+//     closeModal(openedModal);
+//   };
+// } 
 
-/* Event Handlers */
+// /* Event Handlers */
 
-// Profile Pencil Modal Event Handler
+// // Profile Pencil Modal Event Handler
 
-function handleProfileEditSubmit(e) {
-  e.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  closeModal(profilePencilModal);
-}
+// function handleProfileEditSubmit(e) {
+//   e.preventDefault();
+//   profileTitle.textContent = profileTitleInput.value;
+//   profileDescription.textContent = profileDescriptionInput.value;
+//   closeModal(profilePencilModal);
+// }
 
-// Add Card Modal Event Handler
+// // Add Card Modal Event Handler
 
-function handleAddNewCardSubmit(e) {
-  e.preventDefault();
-  const newCard = {
-    name: addCardTitleInput.value,
-    link: addCardImageLinkInput.value,
-  };
-  const cardElementData = new Card(newCard, "#card-template");
-  const cardElement = cardElementData.getView();
-  cardContentElement.prepend(cardElement);
-  closeModal(addCardModal);
-  addCardModalForm.reset();
-  addCardFormValidator.disableBtn(addCardSaveBtn);
-}
+// function handleAddNewCardSubmit(e) {
+//   e.preventDefault();
+//   const newCard = {
+//     name: addCardTitleInput.value,
+//     link: addCardImageLinkInput.value,
+//   };
+//   const cardElementData = new Card(newCard, "#card-template");
+//   const cardElement = cardElementData.getView();
+//   cardContentElement.prepend(cardElement);
+//   closeModal(addCardModal);
+//   addCardModalForm.reset();
+//   addCardFormValidator.disableBtn(addCardSaveBtn);
+// }
 
 /* Event Listeners */
 
@@ -167,7 +168,7 @@ const defautlFormConfig = {
 }
 
 const editFormValidator = new FormValidator(defautlFormConfig, profilePencilModal);
-const addCardFormValidator = new FormValidator(defautlFormConfig, addCardModal);
+export const addCardFormValidator = new FormValidator(defautlFormConfig, addCardModal);
 
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
