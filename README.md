@@ -1,4 +1,4 @@
-# Project 3, 4, 5 and 6: Around The U.S.
+# Project 3, 4, 5, 6 and 7: Around The U.S.
 
 ### Overview
 
@@ -26,6 +26,7 @@ This is the third project of our software bootcamp, aiming to create a responsiv
 - JavaScript Query Selectores
 - JavaScript Functions
 - JavaScript Event Handlers
+- JavaScript Classes
 
 **Figma**
 
