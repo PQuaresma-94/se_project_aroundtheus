@@ -40,13 +40,17 @@ _hasInvalidInput(inputList) {
 }
 
 disableBtn() {
-    this._formEl.querySelector(this._submitButtonSelector).classList.add(this._inactiveButtonClass);
-    this._formEl.querySelector(this._submitButtonSelector).disabled = true;
+    const saveButton = this._formEl.querySelector(this._submitButtonSelector);
+
+    saveButton.classList.add(this._inactiveButtonClass);
+    saveButton.disabled = true;
 }
 
 _enableBtn() {
-    this._formEl.querySelector(this._submitButtonSelector).classList.remove(this._inactiveButtonClass);
-    this._formEl.querySelector(this._submitButtonSelector).disabled = false;
+    const saveButton = this._formEl.querySelector(this._submitButtonSelector);
+
+    saveButton.classList.remove(this._inactiveButtonClass);
+    saveButton.disabled = false;
 }
 
 _toggleButtonState(inputEls) {
