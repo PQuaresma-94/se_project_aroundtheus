@@ -1,6 +1,6 @@
 import Card from "../components/Card.js"
 import FormValidator from "../components/FormValidator.js"
-import {openModal, closeModal, handleProfileEditSubmit, handleAddNewCardSubmit} from "../utils/utils.js"
+import {openModal, closeModal} from "../utils/utils.js"
 
 const initialCards = [
     {
@@ -48,6 +48,9 @@ const cardContentElement = document.querySelector(".cards__content");
 const profileAddBtn = document.querySelector("#profile-add-btn");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardCloseModal = document.querySelector("#add-card-close-btn");
+const addCardTitleInput = document.querySelector("#card-title-input");
+const addCardImageLinkInput = document.querySelector("#card-image-link-input");
+const addCardModalForm = addCardModal.querySelector(".modal__form");
 
 // Preview Image Elements
 
@@ -58,17 +61,17 @@ const previewCloseBtn = document.querySelector("#preview-image-close-btn");
 
 // Profile Pencil Modal Event Listeners
 
-profilePencilBtn.addEventListener('click', () => {
+profilePencilBtn.addEventListener('mousedown', () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profilePencilModal);
 });
 
-profileCloseModal.addEventListener('click', () => closeModal(profilePencilModal));
+profileCloseModal.addEventListener('mousedown', () => closeModal(profilePencilModal));
 
 profileModalForm.addEventListener('submit', handleProfileEditSubmit);
 
-profilePencilModal.addEventListener("click", (e) => {
+profilePencilModal.addEventListener('mousedown', (e) => {
   if (e.target === profilePencilModal) {
     closeModal(profilePencilModal);
   };
@@ -76,13 +79,13 @@ profilePencilModal.addEventListener("click", (e) => {
 
 // Add Card Modal Event Listeners
 
-profileAddBtn.addEventListener('click', () => {
+profileAddBtn.addEventListener('mousedown', () => {
   openModal(addCardModal);
 });
 
-addCardCloseModal.addEventListener('click', () => closeModal(addCardModal));
+addCardCloseModal.addEventListener('mousedown', () => closeModal(addCardModal));
 
-addCardModal.addEventListener("click", (e) => {
+addCardModal.addEventListener('mousedown', (e) => {
   if (e.target === addCardModal) {
     closeModal(addCardModal);
   };
@@ -92,14 +95,40 @@ addCardModal.addEventListener('submit', handleAddNewCardSubmit);
 
 // Preview Image Event Listeners
 
-previewCloseBtn.addEventListener('click', () => closeModal(previewImageModal));
+previewCloseBtn.addEventListener('mousedown', () => closeModal(previewImageModal));
 
-previewImageModal.addEventListener("click", (e) => {
+previewImageModal.addEventListener('mousedown', (e) => {
   if (e.target === previewImageModal) {
     closeModal(previewImageModal);
   };
 })
 
+/* Event Handlers */
+
+// Profile Pencil Modal Event Handler
+
+function handleProfileEditSubmit(e) {
+  e.preventDefault();
+  profileTitle.textContent = profileTitleInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
+  closeModal(profilePencilModal);
+}
+
+// Add Card Modal Event Handler
+
+function handleAddNewCardSubmit(e) {
+  e.preventDefault();
+  const newCard = {
+    name: addCardTitleInput.value,
+    link: addCardImageLinkInput.value,
+  };
+  const cardElementData = new Card(newCard, "#card-template");
+  const cardElement = cardElementData.getView();
+  cardContentElement.prepend(cardElement);
+  closeModal(addCardModal);
+  addCardModalForm.reset();
+  addCardFormValidator.disableBtn();
+}
 
 // Validation Activation
 
@@ -113,7 +142,7 @@ const defautlFormConfig = {
 }
 
 const editFormValidator = new FormValidator(defautlFormConfig, profilePencilModal);
-export const addCardFormValidator = new FormValidator(defautlFormConfig, addCardModal);
+const addCardFormValidator = new FormValidator(defautlFormConfig, addCardModal);
 
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();

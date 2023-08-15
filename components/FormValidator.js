@@ -39,32 +39,31 @@ _hasInvalidInput(inputList) {
     return !inputList.every((inputEl) => inputEl.validity.valid)
 }
 
-disableBtn(saveButton) {
-    saveButton.classList.add(this._inactiveButtonClass);
-    saveButton.disabled = true;
+disableBtn() {
+    this._formEl.querySelector(this._submitButtonSelector).classList.add(this._inactiveButtonClass);
+    this._formEl.querySelector(this._submitButtonSelector).disabled = true;
 }
 
-_enableBtn(saveButton) {
-    saveButton.classList.remove(this._inactiveButtonClass);
-    saveButton.disabled = false;
+_enableBtn() {
+    this._formEl.querySelector(this._submitButtonSelector).classList.remove(this._inactiveButtonClass);
+    this._formEl.querySelector(this._submitButtonSelector).disabled = false;
 }
 
-_toggleButtonState(inputEls, saveButton) {
+_toggleButtonState(inputEls) {
     if (this._hasInvalidInput(inputEls)) {
-        this.disableBtn(saveButton)
+        this.disableBtn()
         return;
     } 
-    this._enableBtn(saveButton);
+    this._enableBtn();
 }
 
 _setEventListeners() {
     const inputEls = [...this._formEl.querySelectorAll(this._inputSelector)];
-    const saveButton = this._formEl.querySelector(this._submitButtonSelector)
 
     inputEls.forEach((inputEl) => {
         inputEl.addEventListener("input", (e) => {
             this._checkInputValidity(inputEl)
-            this._toggleButtonState(inputEls, saveButton);
+            this._toggleButtonState(inputEls);
         });
     });
 }
@@ -77,7 +76,3 @@ enableValidation() {
 }
 
 }
-
-
-//config needs to be the modal while the form element needs to be the form inside the modal
-// See if Save button needs to be remove as an argument in _toggleButtonState, _disableBtn and _enableBtn

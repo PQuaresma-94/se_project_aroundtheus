@@ -2,23 +2,7 @@ const previewImageModal = document.querySelector("#preview-image-modal");
 const previewCardImage = previewImageModal.querySelector(".modal__preview-image");
 const previewCardImageTitle = previewImageModal.querySelector(".modal__preview-image-title");
 
-function openModal(modal) {
-    modal.classList.add("modal_opened");
-    document.addEventListener('keydown', closeByEscape);
-  }
-  
-  function closeModal(modal) {
-    modal.classList.remove("modal_opened");
-    document.removeEventListener('keydown', closeByEscape);
-  }
-  
-  function closeByEscape(e) {
-    if (e.key === "Escape") {
-      const openedModal = document.querySelector(".modal_opened");
-      closeModal(openedModal);
-    };
-  } 
-
+import {openModal} from "../utils/utils.js"
 
 export default class Card {
     constructor(cardData, cardSelector) {
@@ -28,9 +12,9 @@ export default class Card {
     }
 
     _setEventListeners() {
-        this._element.querySelector(".card__like-button").addEventListener('click', () => this._handleLikeButtonClick());
-        this._element.querySelector(".card__delete-button").addEventListener('click', () => this._handleDeleteCard());
-        this._element.querySelector(".card__image").addEventListener('click', () => this._handlePreviewPicture());
+        this._element.querySelector(".card__like-button").addEventListener('mousedown', () => this._handleLikeButtonClick());
+        this._element.querySelector(".card__delete-button").addEventListener('mousedown', () => this._handleDeleteCard());
+        this._element.querySelector(".card__image").addEventListener('mousedown', () => this._handlePreviewPicture());
     }
 
     _handleLikeButtonClick() {
