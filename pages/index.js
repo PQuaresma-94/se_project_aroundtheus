@@ -1,5 +1,10 @@
 import Card from "../components/Card.js"
 import FormValidator from "../components/FormValidator.js"
+import Popup from "../components/Popup.js"
+import PopupWithForm from "../components/PopupWithForm.js"
+import PopupWithImage from "../components/PopupWithImage.js"
+import Section from "../components/Section.js"
+import UserInfo from "../components/UserInfo.js"
 import {openModal, closeModal} from "../utils/utils.js"
 
 const initialCards = [
@@ -147,14 +152,40 @@ const addCardFormValidator = new FormValidator(defautlFormConfig, addCardModal);
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
-// Render Initial Cards
+// Render Initial Cards (To be deleted)
 
-function renderCard () {
-  initialCards.forEach((cardData) => {
-  const initialCardData = new Card(cardData, "#card-template");
-  const cardElement = initialCardData.getView();
-  cardContentElement.append(cardElement)
-  })
-}
+// function renderCard () {
+//   initialCards.forEach((cardData) => {
+//   const initialCardData = new Card(cardData, "#card-template");
+//   const cardElement = initialCardData.getView();
+//   cardContentElement.append(cardElement)
+//   })
+// }
 
-renderCard();
+// renderCard();
+
+// Render Initial Cards from Section class
+const cardSection = new Section({
+  items: initialCards,
+  renderer: (cardData) => {
+    const initialCardData = new Card(cardData, "#card-template");
+    const cardElement = initialCardData.getView();
+    cardSection.addItem(cardElement);
+  }
+}, '.cards__content');
+
+cardSection.renderItems();
+
+// UserInfo 
+const userInfo = new UserInfo({
+  title: '.profile__title',
+  description: '.profile__description'
+});
+
+// Edit Profile Form 
+const profileEditPopup = new PopupWithForm('#profile-pencil-modal', (formData) => {
+  // Handle form submission, formData contains the form input values
+  // Update user info or send data to the server
+  // Example: userInfo.setUserInfo(formData);
+});
+profileEditPopup.setEventListeners();
