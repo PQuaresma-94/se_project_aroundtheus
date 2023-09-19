@@ -120,8 +120,9 @@ profilePencilBtn.addEventListener('mousedown', () => {
   const profileInfo = userInfo.getUserInfo();
   profileTitleInput.value =  profileInfo.title;
   profileDescriptionInput.value = profileInfo.description;
-  profileEditPopup.open();
   editFormValidator.resetErrorMessage();
+  editFormValidator.disableBtn();
+  profileEditPopup.open();
 });
 
 // Add New Card Form 
