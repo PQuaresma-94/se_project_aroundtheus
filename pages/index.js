@@ -38,72 +38,16 @@ const initialCards = [
 
 const profilePencilBtn = document.querySelector("#profile-pencil-btn");
 const profilePencilModal = document.querySelector("#profile-pencil-modal");
-const profileCloseModal = document.querySelector("#profile-modal-close-btn");
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector("#profile-description-input");
-const profileModalForm = profilePencilModal.querySelector(".modal__form");
 
 // Add Card Elements
 
-const cardContentElement = document.querySelector(".cards__content");
 const profileAddBtn = document.querySelector("#profile-add-btn");
 const addCardModal = document.querySelector("#add-card-modal");
-const addCardCloseModal = document.querySelector("#add-card-close-btn");
 const addCardTitleInput = document.querySelector("#card-title-input");
 const addCardImageLinkInput = document.querySelector("#card-image-link-input");
-const addCardModalForm = addCardModal.querySelector(".modal__form");
 
-// Preview Image Elements
-
-const previewImageModal = document.querySelector("#preview-image-modal");
-const previewCloseBtn = document.querySelector("#preview-image-close-btn");
-
-/* Event Listeners */
-
-// Profile Pencil Modal Event Listeners
-
-// profilePencilBtn.addEventListener('mousedown', () => {
-//   profileTitleInput.value = profileTitle.textContent;
-//   profileDescriptionInput.value = profileDescription.textContent;
-//   openModal(profilePencilModal);
-//   editFormValidator.resetErrorMessage();
-// });
-
-// profileCloseModal.addEventListener('mousedown', () => closeModal(profilePencilModal));
-
-// profilePencilModal.addEventListener('mousedown', (e) => {
-//   if (e.target === profilePencilModal) {
-//     closeModal(profilePencilModal);
-//   };
-// })
-
-// Add Card Modal Event Listeners
-
-// profileAddBtn.addEventListener('mousedown', () => {
-//   openModal(addCardModal);
-// });
-
-// addCardCloseModal.addEventListener('mousedown', () => closeModal(addCardModal));
-
-// addCardModal.addEventListener('mousedown', (e) => {
-//   if (e.target === addCardModal) {
-//     closeModal(addCardModal);
-//   };
-// })
-
-// addCardModal.addEventListener('submit', handleAddNewCardSubmit);
-
-// Preview Image Event Listeners
-
-// previewCloseBtn.addEventListener('mousedown', () => closeModal(previewImageModal));
-
-// previewImageModal.addEventListener('mousedown', (e) => {
-//   if (e.target === previewImageModal) {
-//     closeModal(previewImageModal);
-//   };
-// })
 
 // Popup Image
 
@@ -115,21 +59,6 @@ function handleCardClick(link, name) {
   imagePopup.open({link, name});
 }
 
-/* Event Handlers */
-
-// Profile Pencil Modal Event Handler (to be deleted)
-
-// function handleProfileEditSubmit(e) {
-//   e.preventDefault();
-//   profileTitle.textContent = profileTitleInput.value;
-//   profileDescription.textContent = profileDescriptionInput.value;
-//   closeModal(profilePencilModal);
-// }
-
-// profileModalForm.addEventListener('submit', handleProfileEditSubmit);
-
-// End of Profile Edit Form
-
 // Add Card Modal Event Handler
 
 function handleAddNewCardSubmit() {
@@ -140,9 +69,6 @@ function handleAddNewCardSubmit() {
   const cardElementData = new Card(newCard, "#card-template", handleCardClick);
   const cardElement = cardElementData.getView();
   cardSection.addItem(cardElement);
-  // cardContentElement.prepend(cardElement);
-  // closeModal(addCardModal);
-  addCardModalForm.reset();
   addCardFormValidator.disableBtn();
 }
 
@@ -163,18 +89,6 @@ const addCardFormValidator = new FormValidator(defautlFormConfig, addCardModal);
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
-// Render Initial Cards (To be deleted)
-
-// function renderCard () {
-//   initialCards.forEach((cardData) => {
-//   const initialCardData = new Card(cardData, "#card-template");
-//   const cardElement = initialCardData.getView();
-//   cardContentElement.append(cardElement)
-//   })
-// }
-
-// renderCard();
-
 // Render Initial Cards from Section class
 const cardSection = new Section({
   items: initialCards,
@@ -188,6 +102,7 @@ const cardSection = new Section({
 cardSection.renderItems();
 
 // UserInfo 
+
 const userInfo = new UserInfo({
   title: '.profile__title',
   description: '.profile__description'
