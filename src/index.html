@@ -9,13 +9,12 @@
     <meta name="keywords" content="Practicum, bootcamp, sprint 3" />
     <title>Around the U.S.</title>
     <link rel="shortcut icon" href="./images/favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
-          src="./images/logo_white.svg"
+          src="<%= require('./images/logo_white.svg')%>"
           alt="Around The U.S. Logo"
           class="logo"
         />
@@ -23,7 +22,7 @@
       <main class="content">
         <section class="profile page__section">
           <img
-            src="./images/jacques-cousteau.jpg"
+            src="<%= require('./images/jacques-cousteau.jpg')%>"
             alt="Avatar"
             class="profile__image"
           />
@@ -155,6 +154,5 @@
         <button class="card__delete-button" type="button"></button>
       </li>
     </template>
-    <script type="module" src="./pages/index.js" defer></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-# Project 3, 4, 5, 6 and 7: Around The U.S.
+# Project 3, 4, 5, 6, 7 and 8: Around The U.S.
 
 ### Overview
 
@@ -27,6 +27,7 @@ This is the third project of our software bootcamp, aiming to create a responsiv
 - JavaScript Functions
 - JavaScript Event Handlers
 - JavaScript Classes
+- Webpack
 
 **Figma**
 
