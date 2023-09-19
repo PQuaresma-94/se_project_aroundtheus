@@ -4,7 +4,7 @@ export default class PopupWithForm extends Popup {
     constructor(popupSelector, handleFormSubmit) {
         super({popupSelector});
         this._popupForm = this._popupElement.querySelector(".modal__form");
-        this._handleFormSubmiit = handleFormSubmit;
+        this._handleFormSubmit = handleFormSubmit;
     }
 
     _getInputValues() {
@@ -14,19 +14,22 @@ export default class PopupWithForm extends Popup {
             values[input.name] = input.value;
         });
         return values;
-        }
+    }
 
     setEventListeners(){
         super.setEventListeners();
         this._popupForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            this._handleFormSubmiit(this._getInputValues());
+            this._handleFormSubmit(this._getInputValues());
             this.close();
-        })
+        });
+        this._popupElement.querySelector(".modal__close-button").addEventListener('mousedown', () => {
+            this.close();
+        });
     }
 
     close() {
         this._popupForm.reset();
         super.close();
     }
-}
+} 
