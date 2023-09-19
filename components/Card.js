@@ -1,14 +1,9 @@
-const previewImageModal = document.querySelector("#preview-image-modal");
-const previewCardImage = previewImageModal.querySelector(".modal__preview-image");
-const previewCardImageTitle = previewImageModal.querySelector(".modal__preview-image-title");
-
-import {openModal} from "../utils/utils.js"
-
 export default class Card {
-    constructor(cardData, cardSelector) {
+    constructor(cardData, cardSelector, handleCardClick) {
         this._name = cardData.name;
         this._link = cardData.link;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     _setEventListeners() {
@@ -26,10 +21,7 @@ export default class Card {
     }
 
     _handlePreviewPicture() {
-        openModal(previewImageModal);
-        previewCardImage.src = this._link;
-        previewCardImage.alt = this._name;
-        previewCardImageTitle.textContent = this._name;
+        this._handleCardClick(this._link, this._name);
     }
 
     getView() {

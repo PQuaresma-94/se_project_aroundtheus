@@ -79,4 +79,14 @@ enableValidation() {
     this._setEventListeners();
 }
 
+// TODO: REMOVE BEFORE SUBMIT IF SOLVED
+resetErrorMessage() {
+    const inputEls = [...this._formEl.querySelectorAll(this._inputSelector)];
+
+    inputEls.forEach((inputEl) => {
+        this._hideInputError(inputEl);
+        this._toggleButtonState(inputEls);
+    });
+}
+
 }
