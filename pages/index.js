@@ -49,7 +49,7 @@ const addCardTitleInput = document.querySelector("#card-title-input");
 const addCardImageLinkInput = document.querySelector("#card-image-link-input");
 
 
-// Popup Image
+// Popup Image Preview
 
 const imagePopup = new PopupWithImage("#preview-image-modal");
 
