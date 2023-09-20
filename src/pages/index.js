@@ -20,9 +20,6 @@ const profileDescriptionInput = document.querySelector("#profile-description-inp
 
 const profileAddBtn = document.querySelector("#profile-add-btn");
 const addCardModal = document.querySelector("#add-card-modal");
-const addCardTitleInput = document.querySelector("#card-title-input");
-const addCardImageLinkInput = document.querySelector("#card-image-link-input");
-
 
 // Popup Image Preview
 
