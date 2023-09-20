@@ -43,14 +43,9 @@ function createCard(cardData) {
 
 // Add Card Modal Event Handler
 
-function handleAddNewCardSubmit() {
-  const newCard = {
-    name: addCardTitleInput.value,
-    link: addCardImageLinkInput.value,
-  };
-  const cardElement = createCard(newCard);
+function handleAddNewCardSubmit(newCardData) {
+  const cardElement = createCard(newCardData);
   cardSection.addItem(cardElement);
-  addCardFormValidator.disableBtn();
 }
 
 // Validation Activation
@@ -107,13 +102,14 @@ profilePencilBtn.addEventListener('click', () => {
 
 // Add New Card Form 
 
-const addNewCardPopup = new PopupWithForm('#add-card-modal', () => {
-  handleAddNewCardSubmit();
+const addNewCardPopup = new PopupWithForm('#add-card-modal', (newCardData) => {
+  handleAddNewCardSubmit(newCardData);
 });
 
 addNewCardPopup.setEventListeners();
 
 profileAddBtn.addEventListener('click', () => {
   addCardFormValidator.resetErrorMessage();
+  addCardFormValidator.disableBtn();
   addNewCardPopup.open();
 });
