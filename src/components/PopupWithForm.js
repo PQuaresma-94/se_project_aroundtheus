@@ -23,9 +23,6 @@ export default class PopupWithForm extends Popup {
             this._handleFormSubmit(this._getInputValues());
             this.close();
         });
-        this._popupElement.querySelector(".modal__close-button").addEventListener('mousedown', () => {
-            this.close();
-        });
     }
 
     close() {

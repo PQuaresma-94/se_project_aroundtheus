@@ -1,3 +1,4 @@
+import {initialCards} from "../utils/constants.js"
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -5,33 +6,6 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import "./index.css";
-
-const initialCards = [
-    {
-      name: "Yosemite Valley",
-      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-    },
-    {
-      name: "Lake Louise",
-      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-    },
-    {
-      name: "Bald Mountains",
-      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-    },
-    {
-      name: "Latemar",
-      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-    },
-    {
-      name: "Vanoise National Park",
-      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-    },
-    {
-      name: "Lago di Braies",
-      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-    },
-  ];
 
 /* Elements */
 
@@ -60,6 +34,13 @@ function handleCardClick(link, name) {
   imagePopup.open({link, name});
 }
 
+// Create Card Function
+
+function createCard(cardData) {
+  const cardElementData = new Card(cardData, "#card-template", handleCardClick);
+  return cardElementData.getView();
+}
+
 // Add Card Modal Event Handler
 
 function handleAddNewCardSubmit() {
@@ -67,8 +48,7 @@ function handleAddNewCardSubmit() {
     name: addCardTitleInput.value,
     link: addCardImageLinkInput.value,
   };
-  const cardElementData = new Card(newCard, "#card-template", handleCardClick);
-  const cardElement = cardElementData.getView();
+  const cardElement = createCard(newCard);
   cardSection.addItem(cardElement);
   addCardFormValidator.disableBtn();
 }
@@ -94,8 +74,7 @@ addCardFormValidator.enableValidation();
 const cardSection = new Section({
   items: initialCards,
   renderer: (cardData) => {
-    const initialCardData = new Card(cardData, "#card-template", handleCardClick);
-    const cardElement = initialCardData.getView();
+     const cardElement = createCard(cardData);
     cardSection.addItem(cardElement);
   }
 }, '.cards__content');
@@ -117,7 +96,7 @@ const profileEditPopup = new PopupWithForm('#profile-pencil-modal', (formData) =
 
 profileEditPopup.setEventListeners();
 
-profilePencilBtn.addEventListener('mousedown', () => {
+profilePencilBtn.addEventListener('click', () => {
   const profileInfo = userInfo.getUserInfo();
   profileTitleInput.value =  profileInfo.title;
   profileDescriptionInput.value = profileInfo.description;
@@ -134,7 +113,7 @@ const addNewCardPopup = new PopupWithForm('#add-card-modal', () => {
 
 addNewCardPopup.setEventListeners();
 
-profileAddBtn.addEventListener('mousedown', () => {
+profileAddBtn.addEventListener('click', () => {
   addCardFormValidator.resetErrorMessage();
   addNewCardPopup.open();
 });
