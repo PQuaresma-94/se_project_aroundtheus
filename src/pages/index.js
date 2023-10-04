@@ -1,4 +1,5 @@
 import {initialCards} from "../utils/constants.js"
+import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -20,6 +21,19 @@ const profileDescriptionInput = document.querySelector("#profile-description-inp
 
 const profileAddBtn = document.querySelector("#profile-add-btn");
 const addCardModal = document.querySelector("#add-card-modal");
+
+// Api Class
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "5ed97d95-558f-499d-9d81-4e06bbe8932c",
+    "Content-Type": "application/json"
+  }
+}); 
+
+const currentUserData = api.getCurrentUser()
+  .then(()=> console.log(currentUserData.name))
 
 // Popup Image Preview
 
