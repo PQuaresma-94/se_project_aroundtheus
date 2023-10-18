@@ -35,7 +35,7 @@ const api = new Api({
   }
 }); 
 
-const currentUserData = api.getCurrentUser()
+api.getCurrentUser();
 
 // Update Avtar Function 
 
@@ -101,7 +101,8 @@ cardSection.renderItems();
 
 const userInfo = new UserInfo({
   title: '.profile__title',
-  description: '.profile__description'
+  description: '.profile__description',
+  avatar: '.profile__image'
 });
 
 // Edit Profile Form 
@@ -149,8 +150,8 @@ profileAddBtn.addEventListener('click', () => {
   addNewCardPopup.open();
 });
 
-// Delete Confirmation Card Form 
+// Delete Confirmation Card Form (need to fix console error of undefined from event listeners)
 
-const deleteConfirmationCardPopup = new PopupWithForm('#card-confirmation-modal');
+// const deleteConfirmationCardPopup = new PopupWithForm('#card-confirmation-modal');
 
-deleteConfirmationCardPopup.setEventListeners();
+// deleteConfirmationCardPopup.setEventListeners();

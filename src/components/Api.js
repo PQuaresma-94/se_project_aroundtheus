@@ -16,10 +16,12 @@ export default class Api {
 
     getCurrentUser() {
         return fetch(`${this._baseUrl}/users/me`, {
-          method: 'GET',
           headers: this._headers,
         })
-        .then (this._checkServerResponse);
+        .then (this._checkServerResponse)
+        .then((result) => {
+          console.log(result);
+        }); 
       }
     
       updateProfile(profileData) {
@@ -38,7 +40,7 @@ export default class Api {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
           method: 'PATCH',
           headers: this._headers,
-          body: JSON.stringify(avatarData),
+          body: JSON.stringify({avatar: avatarData.link}),
         })
         .then (this._checkServerResponse);
       }
@@ -46,7 +48,53 @@ export default class Api {
       // Card Methods
 
       getInitialCards() {
-        // ...
+        return fetch(`${this._baseUrl}/cards`, {
+          headers: this._headers,
+        })
+        .then (this._checkServerResponse)
+        .then((result) => {
+          console.log(result);
+        }); 
+      }
+
+      // Create and Delete Cards
+
+      addCard({title, link}) {
+        return fetch(`${this._baseUrl}/cards`, {
+          method: 'POST',
+          headers: this._headers,
+          body: JSON.stringify({
+            name: title,
+            link: link,
+          })
+        })
+        .then (this._checkServerResponse);
+      }
+
+      deleteCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+          method: 'DELETE',
+          headers: this._headers,
+        })
+        .then (this._checkServerResponse);
+      }
+
+      // Like Cards Functionality
+
+      likeCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+          method: 'PUT',
+          headers: this._headers,
+        })
+        .then (this._checkServerResponse);
+      }
+
+      dislikeCard(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+          method: 'DELETE',
+          headers: this._headers,
+        })
+        .then (this._checkServerResponse);
       }
   }
   
