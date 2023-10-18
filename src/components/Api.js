@@ -19,9 +19,6 @@ export default class Api {
           headers: this._headers,
         })
         .then (this._checkServerResponse)
-        .then((result) => {
-          console.log(result);
-        }); 
       }
     
       updateProfile(profileData) {
@@ -52,9 +49,6 @@ export default class Api {
           headers: this._headers,
         })
         .then (this._checkServerResponse)
-        .then((result) => {
-          console.log(result);
-        }); 
       }
 
       // Create and Delete Cards

@@ -35,9 +35,15 @@ const api = new Api({
   }
 }); 
 
-api.getCurrentUser();
+// UserInfo 
 
-// Update Avtar Function 
+const userInfo = new UserInfo({
+  title: '.profile__title',
+  description: '.profile__description',
+  avatar: '.profile__image'
+});
+
+// Update Avatar Function 
 
 function updateAvatar(newAvatar) {
   profileAvatarImage.src = newAvatar
@@ -87,23 +93,25 @@ addCardFormValidator.enableValidation();
 editAvatarFormValidator.enableValidation();
 
 // Render Initial Cards from Section class
-const cardSection = new Section({
-  items: initialCards,
-  renderer: (cardData) => {
-     const cardElement = createCard(cardData);
-    cardSection.addItem(cardElement);
-  }
-}, '.cards__content');
 
-cardSection.renderItems();
+Promise.all([api.getCurrentUser(), api.getInitialCards()])
+  .then(([data, apiInitialCards]) => {
+    console.log(data, apiInitialCards );
+    userInfo.setUserInfo({ title: data.name, description: data.about});
+    userInfo.setAvatar(data.avatar);
+    const cardSection = new Section({
+      items: apiInitialCards,
+      renderer: (cardData) => {
+         const cardElement = createCard(cardData);
+        cardSection.addItem(cardElement);
+      }
+    }, '.cards__content');
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.error(`Error: ${err}`)
+  });
 
-// UserInfo 
-
-const userInfo = new UserInfo({
-  title: '.profile__title',
-  description: '.profile__description',
-  avatar: '.profile__image'
-});
 
 // Edit Profile Form 
 
