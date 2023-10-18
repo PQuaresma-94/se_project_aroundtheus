@@ -14,8 +14,11 @@ import "./index.css";
 
 const profilePencilBtn = document.querySelector("#profile-pencil-btn");
 const profilePencilModal = document.querySelector("#profile-pencil-modal");
+const profileAvatarModal = document.querySelector("#profile-avatar-modal");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector("#profile-description-input");
+const profileAvatarImage = document.querySelector(".profile__image")
+const profileAvatarEditBtn = document.querySelector("#profile-image-pencil-btn");
 
 // Add Card Elements
 
@@ -33,7 +36,12 @@ const api = new Api({
 }); 
 
 const currentUserData = api.getCurrentUser()
-  .then(()=> console.log(currentUserData.name))
+
+// Update Avtar Function 
+
+function updateAvatar(newAvatar) {
+  profileAvatarImage.src = newAvatar
+};
 
 // Popup Image Preview
 
@@ -72,9 +80,11 @@ const defautlFormConfig = {
 
 const editFormValidator = new FormValidator(defautlFormConfig, profilePencilModal);
 const addCardFormValidator = new FormValidator(defautlFormConfig, addCardModal);
+const editAvatarFormValidator = new FormValidator(defautlFormConfig, profileAvatarModal);
 
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
+editAvatarFormValidator.enableValidation();
 
 // Render Initial Cards from Section class
 const cardSection = new Section({
@@ -111,6 +121,20 @@ profilePencilBtn.addEventListener('click', () => {
   profileEditPopup.open();
 });
 
+// Edit Avatar Form
+
+const profileAvatarPopup = new PopupWithForm('#profile-avatar-modal', (formData) => {
+  updateAvatar(formData);
+});
+
+profileAvatarPopup.setEventListeners();
+
+profileAvatarEditBtn.addEventListener('click', () => {
+  editAvatarFormValidator.resetErrorMessage();
+  editAvatarFormValidator.disableBtn();
+  profileAvatarPopup.open();
+})
+
 // Add New Card Form 
 
 const addNewCardPopup = new PopupWithForm('#add-card-modal', (newCardData) => {
@@ -124,3 +148,9 @@ profileAddBtn.addEventListener('click', () => {
   addCardFormValidator.disableBtn();
   addNewCardPopup.open();
 });
+
+// Delete Confirmation Card Form 
+
+const deleteConfirmationCardPopup = new PopupWithForm('#card-confirmation-modal');
+
+deleteConfirmationCardPopup.setEventListeners();

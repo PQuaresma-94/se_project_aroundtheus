@@ -3,6 +3,14 @@ export default class Api {
         this._baseUrl = baseUrl;
         this._headers = headers;
    }
+
+   // Check Response
+
+   _checkServerResponse(res) {
+    if (res.ok) {
+      return res.json();
+    } else Promise.reject(`Error: ${res.status}`);
+   } 
   
     // User Methods
 
@@ -11,11 +19,7 @@ export default class Api {
           method: 'GET',
           headers: this._headers,
         })
-        .then(res => res.json())
-        .then((result) => {
-            return result;
-        })
-        .catch((err) => {console.log(err)})
+        .then (this._checkServerResponse);
       }
     
       updateProfile(profileData) {
@@ -26,7 +30,8 @@ export default class Api {
             name: profileData.title,
             about: profileData.description,
           }),
-        }).then((response) => response.json());
+        })
+        .then (this._checkServerResponse);
       }
     
       updateAvatar(avatarData) {
@@ -34,7 +39,8 @@ export default class Api {
           method: 'PATCH',
           headers: this._headers,
           body: JSON.stringify(avatarData),
-        }).then((response) => response.json());
+        })
+        .then (this._checkServerResponse);
       }
 
       // Card Methods
