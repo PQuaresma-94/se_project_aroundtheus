@@ -1,4 +1,3 @@
-import {initialCards} from "../utils/constants.js"
 import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -131,11 +130,11 @@ editAvatarFormValidator.enableValidation();
 let cardSection
 
 Promise.all([api.getCurrentUser(), api.getInitialCards()])
-  .then(([data, apiInitialCards]) => {
+  .then(([data, InitialCards]) => {
     userInfo.setUserInfo({ title: data.name, description: data.about});
     userInfo.setAvatar({avatar: data.avatar});
     cardSection = new Section({
-      items: apiInitialCards,
+      items: InitialCards.reverse(),
       renderer: (cardData) => {
          const cardElement = createCard(cardData);
         cardSection.addItem(cardElement);
