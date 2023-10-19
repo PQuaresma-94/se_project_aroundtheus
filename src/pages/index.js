@@ -44,12 +44,6 @@ const userInfo = new UserInfo({
   avatar: '.profile__image'
 });
 
-// Update Avatar Function 
-
-function updateAvatar(newAvatar) {
-  profileAvatarImage.src = newAvatar
-};
-
 // Popup Image Preview
 
 const imagePopup = new PopupWithImage("#preview-image-modal");
@@ -139,7 +133,7 @@ let cardSection
 Promise.all([api.getCurrentUser(), api.getInitialCards()])
   .then(([data, apiInitialCards]) => {
     userInfo.setUserInfo({ title: data.name, description: data.about});
-    userInfo.setAvatar(data.avatar);
+    userInfo.setAvatar({avatar: data.avatar});
     cardSection = new Section({
       items: apiInitialCards,
       renderer: (cardData) => {
@@ -182,8 +176,17 @@ profilePencilBtn.addEventListener('click', () => {
 
 // Edit Avatar Form
 
-const profileAvatarPopup = new PopupWithForm('#profile-avatar-modal', (formData) => {
-  updateAvatar(formData);
+const profileAvatarPopup = new PopupWithForm('#profile-avatar-modal', (newAvatar) => {
+  profileAvatarPopup.submitButtonState(true);
+  api
+    .updateAvatar(newAvatar)
+    .then((newAvatar) => {
+      userInfo.setAvatar({avatar: newAvatar.avatar});
+    })
+    .catch((err) => {
+      console.error(`Error: ${err}`)
+    })
+    .finally(() => profileAvatarPopup.submitButtonState(false));
 });
 
 profileAvatarPopup.setEventListeners();
