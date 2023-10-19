@@ -98,7 +98,6 @@ let cardSection
 
 Promise.all([api.getCurrentUser(), api.getInitialCards()])
   .then(([data, apiInitialCards]) => {
-    console.log([data, apiInitialCards])
     userInfo.setUserInfo({ title: data.name, description: data.about});
     userInfo.setAvatar(data.avatar);
     cardSection = new Section({
@@ -118,7 +117,16 @@ Promise.all([api.getCurrentUser(), api.getInitialCards()])
 // Edit Profile Form 
 
 const profileEditPopup = new PopupWithForm('#profile-pencil-modal', (formData) => {
-   userInfo.setUserInfo(formData);
+  profileEditPopup.submitButtonState(true)
+  api
+    .updateProfile(formData)
+    .then((data) => {
+      userInfo.setUserInfo({ title: data.name, description: data.about});
+    })
+    .catch((err) => {
+      console.error(`Error: ${err}`)
+    })
+    .finally(() => profileEditPopup.submitButtonState(false));
 });
 
 profileEditPopup.setEventListeners();
