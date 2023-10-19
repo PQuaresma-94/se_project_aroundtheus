@@ -2,6 +2,7 @@ import {initialCards} from "../utils/constants.js"
 import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
@@ -83,8 +84,18 @@ function handleLikeClick(card) {
   }
 }
 
-function handleDeleteClick() {
-
+function handleDeleteClick(card) {
+  deleteConfirmationCardPopup.open();
+  deleteConfirmationCardPopup.setConfirmationCallback(() => {
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        card.handleDeleteCard();
+      })
+      .catch((err) => {
+        console.error(`Error: ${err}`)
+      })
+  })
 }
 
 
@@ -127,7 +138,6 @@ let cardSection
 
 Promise.all([api.getCurrentUser(), api.getInitialCards()])
   .then(([data, apiInitialCards]) => {
-    console.log(apiInitialCards)
     userInfo.setUserInfo({ title: data.name, description: data.about});
     userInfo.setAvatar(data.avatar);
     cardSection = new Section({
@@ -207,8 +217,9 @@ profileAddBtn.addEventListener('click', () => {
   addNewCardPopup.open();
 });
 
-// Delete Confirmation Card Form (need to fix console error of undefined from event listeners)
+// Delete Confirmation Card Form 
 
-// const deleteConfirmationCardPopup = new PopupWithForm('#card-confirmation-modal');
+const deleteConfirmationCardPopup = new PopupWithConfirmation('#card-confirmation-modal');
 
-// deleteConfirmationCardPopup.setEventListeners();
+deleteConfirmationCardPopup.setEventListeners();
+

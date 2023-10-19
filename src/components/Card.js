@@ -12,7 +12,7 @@ export default class Card {
 
     _setEventListeners() {
         this._element.querySelector(".card__like-button").addEventListener('mousedown', () => this._handleLikeClick(this));
-        this._element.querySelector(".card__delete-button").addEventListener('mousedown', () => this._handleDeleteCard(this));
+        this._element.querySelector(".card__delete-button").addEventListener('mousedown', () => this._handleDeleteClick(this));
         this._element.querySelector(".card__image").addEventListener('mousedown', () => this._handlePreviewPicture());
     }
 
@@ -33,7 +33,7 @@ export default class Card {
         this._handleLikeButton();
     }
 
-    _handleDeleteCard(e) {
+    handleDeleteCard(e) {
         this._element.remove();
     }
 
