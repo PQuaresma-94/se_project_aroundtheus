@@ -55,14 +55,43 @@ const imagePopup = new PopupWithImage("#preview-image-modal");
 
 imagePopup.setEventListeners();
 
+// Card Functions Handlers
+
 function handleCardClick(link, name) {
   imagePopup.open({link, name});
 }
 
+function handleLikeClick(card) {
+  if (card.isLiked()) {
+    api
+      .dislikeCard(card._id)
+      .then(() => {
+        card.setCardLike(false)
+      })
+      .catch((err) => {
+        console.error(`Error: ${err}`)
+      })
+  } else {
+    api
+      .likeCard(card._id)
+      .then(() => {
+        card.setCardLike(true)
+      })
+      .catch((err) => {
+        console.error(`Error: ${err}`)
+      })
+  }
+}
+
+function handleDeleteClick() {
+
+}
+
+
 // Create Card Function
 
 function createCard(cardData) {
-  const cardElementData = new Card(cardData, "#card-template", handleCardClick);
+  const cardElementData = new Card(cardData, "#card-template", handleCardClick, handleLikeClick, handleDeleteClick);
   return cardElementData.getView();
 }
 
@@ -98,6 +127,7 @@ let cardSection
 
 Promise.all([api.getCurrentUser(), api.getInitialCards()])
   .then(([data, apiInitialCards]) => {
+    console.log(apiInitialCards)
     userInfo.setUserInfo({ title: data.name, description: data.about});
     userInfo.setAvatar(data.avatar);
     cardSection = new Section({
