@@ -94,12 +94,14 @@ editAvatarFormValidator.enableValidation();
 
 // Render Initial Cards from Section class
 
+let cardSection
+
 Promise.all([api.getCurrentUser(), api.getInitialCards()])
   .then(([data, apiInitialCards]) => {
-    console.log(data, apiInitialCards );
+    console.log([data, apiInitialCards])
     userInfo.setUserInfo({ title: data.name, description: data.about});
     userInfo.setAvatar(data.avatar);
-    const cardSection = new Section({
+    cardSection = new Section({
       items: apiInitialCards,
       renderer: (cardData) => {
          const cardElement = createCard(cardData);
@@ -147,7 +149,16 @@ profileAvatarEditBtn.addEventListener('click', () => {
 // Add New Card Form 
 
 const addNewCardPopup = new PopupWithForm('#add-card-modal', (newCardData) => {
-  handleAddNewCardSubmit(newCardData);
+  addNewCardPopup.submitButtonState(true);
+  api
+    .addCard(newCardData)
+    .then((cardData) => {
+      handleAddNewCardSubmit(cardData);
+    })
+    .catch((err) => {
+      console.error(`Error: ${err}`)
+    })
+    .finally(() => addNewCardPopup.submitButtonState(false));
 });
 
 addNewCardPopup.setEventListeners();
