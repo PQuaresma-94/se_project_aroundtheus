@@ -23,7 +23,6 @@ export default class PopupWithForm extends Popup {
         this._popupForm.addEventListener('submit', (e) => {
             e.preventDefault();
             this._handleFormSubmit(this._getInputValues());
-            this.close();
         });
     }
 
@@ -32,7 +31,7 @@ export default class PopupWithForm extends Popup {
         super.close();
     }
 
-    submitButtonState(submit, buttonText = "Saving...") {
+    setSubmitButtonState(submit, buttonText = "Saving...") {
         if (submit) {
             this._submitButton.textContent = buttonText;
         } else {

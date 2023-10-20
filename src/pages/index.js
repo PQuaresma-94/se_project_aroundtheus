@@ -1,3 +1,4 @@
+import {defautlFormConfig} from "../utils/constants.js" 
 import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -62,32 +63,29 @@ function handleLikeClick(card) {
       .then(() => {
         card.setCardLike(false)
       })
-      .catch((err) => {
-        console.error(`Error: ${err}`)
-      })
+      .catch(console.error);
   } else {
     api
       .likeCard(card._id)
       .then(() => {
         card.setCardLike(true)
       })
-      .catch((err) => {
-        console.error(`Error: ${err}`)
-      })
+      .catch(console.error);
   }
 }
 
 function handleDeleteClick(card) {
   deleteConfirmationCardPopup.open();
   deleteConfirmationCardPopup.setConfirmationCallback(() => {
+    deleteConfirmationCardPopup.setSubmitButtonState(true)
     api
       .deleteCard(card._id)
       .then(() => {
         card.handleDeleteCard();
+        deleteConfirmationCardPopup.close();
       })
-      .catch((err) => {
-        console.error(`Error: ${err}`)
-      })
+      .catch(console.error)
+      .finally(() => deleteConfirmationCardPopup.setSubmitButtonState(false));
   })
 }
 
@@ -108,15 +106,6 @@ function handleAddNewCardSubmit(newCardData) {
 
 // Validation Activation
 
-const defautlFormConfig = {
-  formSelector: ".form",
-  inputSelector: ".form__input",
-  submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "modal__save-button_disabled",
-  inputErrorClass: "form__input-error",
-  errorClass: "form__error_visible"
-}
-
 const editFormValidator = new FormValidator(defautlFormConfig, profilePencilModal);
 const addCardFormValidator = new FormValidator(defautlFormConfig, addCardModal);
 const editAvatarFormValidator = new FormValidator(defautlFormConfig, profileAvatarModal);
@@ -130,11 +119,11 @@ editAvatarFormValidator.enableValidation();
 let cardSection
 
 Promise.all([api.getCurrentUser(), api.getInitialCards()])
-  .then(([data, InitialCards]) => {
+  .then(([data, initialCards]) => {
     userInfo.setUserInfo({ title: data.name, description: data.about});
     userInfo.setAvatar({avatar: data.avatar});
     cardSection = new Section({
-      items: InitialCards.reverse(),
+      items: initialCards.reverse(),
       renderer: (cardData) => {
          const cardElement = createCard(cardData);
         cardSection.addItem(cardElement);
@@ -142,24 +131,21 @@ Promise.all([api.getCurrentUser(), api.getInitialCards()])
     }, '.cards__content');
     cardSection.renderItems();
   })
-  .catch((err) => {
-    console.error(`Error: ${err}`)
-  });
+  .catch(console.error);
 
 
 // Edit Profile Form 
 
 const profileEditPopup = new PopupWithForm('#profile-pencil-modal', (formData) => {
-  profileEditPopup.submitButtonState(true)
+  profileEditPopup.setSubmitButtonState(true)
   api
     .updateProfile(formData)
     .then((data) => {
       userInfo.setUserInfo({ title: data.name, description: data.about});
+      profileEditPopup.close();
     })
-    .catch((err) => {
-      console.error(`Error: ${err}`)
-    })
-    .finally(() => profileEditPopup.submitButtonState(false));
+    .catch(console.error)
+    .finally(() => profileEditPopup.setSubmitButtonState(false));
 });
 
 profileEditPopup.setEventListeners();
@@ -176,16 +162,15 @@ profilePencilBtn.addEventListener('click', () => {
 // Edit Avatar Form
 
 const profileAvatarPopup = new PopupWithForm('#profile-avatar-modal', (newAvatar) => {
-  profileAvatarPopup.submitButtonState(true);
+  profileAvatarPopup.setSubmitButtonState(true);
   api
     .updateAvatar(newAvatar)
     .then((newAvatar) => {
       userInfo.setAvatar({avatar: newAvatar.avatar});
+      profileAvatarPopup.close();
     })
-    .catch((err) => {
-      console.error(`Error: ${err}`)
-    })
-    .finally(() => profileAvatarPopup.submitButtonState(false));
+    .catch(console.error)
+    .finally(() => profileAvatarPopup.setSubmitButtonState(false));
 });
 
 profileAvatarPopup.setEventListeners();
@@ -199,16 +184,15 @@ profileAvatarEditBtn.addEventListener('click', () => {
 // Add New Card Form 
 
 const addNewCardPopup = new PopupWithForm('#add-card-modal', (newCardData) => {
-  addNewCardPopup.submitButtonState(true);
+  addNewCardPopup.setSubmitButtonState(true);
   api
     .addCard(newCardData)
     .then((cardData) => {
       handleAddNewCardSubmit(cardData);
+      addNewCardPopup.close();
     })
-    .catch((err) => {
-      console.error(`Error: ${err}`)
-    })
-    .finally(() => addNewCardPopup.submitButtonState(false));
+    .catch(console.error)
+    .finally(() => addNewCardPopup.setSubmitButtonState(false));
 });
 
 addNewCardPopup.setEventListeners();
