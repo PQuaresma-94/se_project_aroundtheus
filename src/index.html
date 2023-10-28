@@ -21,11 +21,20 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%= require('./images/jacques-cousteau.jpg')%>"
-            alt="Avatar"
-            class="profile__image"
-          />
+          <div class="profile__image-container">
+            <img
+              src="<%= require('./images/jacques-cousteau.jpg')%>"
+              alt="Avatar"
+              class="profile__image"
+            />
+            <div class="profile__image-overlay">
+              <button
+                class="profile__image-button"
+                id="profile-image-pencil-btn"
+                type="button"
+              ></button>
+            </div>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -92,6 +101,31 @@
         </form>
       </div>
     </div>
+    <div class="modal" id="profile-avatar-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close-button"
+          id="avatar-modal-close-btn"
+        ></button>
+        <h2 class="modal__heading">Change profile picture</h2>
+        <form class="form modal__form">
+          <fieldset class="form__fieldset">
+            <label class="form__label">
+              <input
+                type="url"
+                class="form__input"
+                name="link"
+                id="avatar-link-input"
+                placeholder="Image link"
+                required
+              />
+              <span class="form__error" id="avatar-link-input-error"></span>
+            </label>
+          </fieldset>
+          <button class="modal__save-button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
     <div class="modal" id="add-card-modal">
       <div class="modal__container">
         <button class="modal__close-button" id="add-card-close-btn"></button>
@@ -142,6 +176,18 @@
         ></button>
         <img class="modal__preview-image" src="#" alt="" />
         <p class="modal__preview-image-title"></p>
+      </div>
+    </div>
+    <div class="modal" id="card-confirmation-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close-button"
+          id="confirmation-modal-close-btn"
+        ></button>
+        <h2 class="modal__heading">Are you sure?</h2>
+        <form class="modal__form">
+          <button class="modal__save-button" type="submit">Yes</button>
+        </form>
       </div>
     </div>
     <template id="card-template">

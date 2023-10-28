@@ -1,37 +1,26 @@
 import Popup from "./Popup.js"
 
-export default class PopupWithForm extends Popup {
-    constructor(popupSelector, handleFormSubmit) {
+export default class PopupWithConfirmation extends Popup {
+    constructor(popupSelector) {
         super({popupSelector});
         this._popupForm = this._popupElement.querySelector(".modal__form");
-        this._handleFormSubmit = handleFormSubmit;
         this._submitButton = this._popupElement.querySelector(".modal__save-button");
         this._submitButtonText = this._submitButton.textContent;
     }
 
-    _getInputValues() {
-        const inputList = this._popupForm.querySelectorAll('.form__input');
-        const values = {};
-        inputList.forEach(input => {
-            values[input.name] = input.value;
-        });
-        return values;
+    setConfirmationCallback(callback) {
+        this._handleConfirmationSubmit = callback;
     }
-
+    
     setEventListeners(){
         super.setEventListeners();
         this._popupForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            this._handleFormSubmit(this._getInputValues());
+            this._handleConfirmationSubmit();
         });
     }
 
-    close() {
-        this._popupForm.reset();
-        super.close();
-    }
-
-    setSubmitButtonState(submit, buttonText = "Saving...") {
+    setSubmitButtonState(submit, buttonText = "Deleting...") {
         if (submit) {
             this._submitButton.textContent = buttonText;
         } else {
